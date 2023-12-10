@@ -18,7 +18,7 @@ const EditModal = ({ hideEditModal,id }) => {
                 "Content-Type":"application/json"
             },
             body: JSON.stringify({name,price,teacher,file:"images/courses/js.png"})
-        }).then((res)=>console.log(res))   
+        }).then((res)=>hideEditModal())   
     }
 
     return (
