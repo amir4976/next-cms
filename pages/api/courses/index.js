@@ -21,9 +21,9 @@ const handler = async (req , res)=>{
                const CreatedCourses = coursesModule.create({name,price,teacher,file})
                
                if(CreatedCourses){
-                    res.json('user added successfully ').status(202)
+                    res.json('course added successfully ').status(202)
                 }else{
-                    res.json('user not added something is wrong').status(402)
+                    res.json('course not added something is wrong').status(402)
                }
             break;
 
