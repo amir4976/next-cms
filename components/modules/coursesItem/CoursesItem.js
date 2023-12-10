@@ -40,7 +40,7 @@ const CoursesItem = ({ title, image ,_id }) => {
         </div>
       </li>
       {showEditModal && <EditModal hideEditModal={hideEditModal} id={_id} />}
-      {showDeleteModal && <DeleteModal hideDeleteModal={hideDeleteModal} />}
+      {showDeleteModal && <DeleteModal hideDeleteModal={hideDeleteModal} id={_id} />}
     </>
   );
 };
