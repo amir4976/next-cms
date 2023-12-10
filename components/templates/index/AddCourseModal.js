@@ -6,7 +6,7 @@ import { faCashRegister, faFile, faTag, faUser } from "@fortawesome/free-solid-s
 import styles from "@/styles/Modal.module.css";
 import { useState } from "react";
 
-const AddCourseModal = ({ hideAddCourseModal }) => {
+const AddCourseModal = ({ hideAddCourseModal ,GetFunc}) => {
 
     const [name ,setTitle]= useState("")
     const [price ,setPrice]= useState("")
@@ -20,7 +20,7 @@ const AddCourseModal = ({ hideAddCourseModal }) => {
             },
             body:JSON.stringify({name,price,teacher,file:"js.png"})
         })
-            .then(res=>hideAddCourseModal(true))
+            .then(res=>{hideAddCourseModal(true);GetFunc()})
     }
 
     return (

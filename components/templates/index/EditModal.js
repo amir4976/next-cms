@@ -6,7 +6,7 @@ import { faCashRegister, faTag, faUser } from "@fortawesome/free-solid-svg-icons
 import styles from "@/styles/Modal.module.css";
 import { useState } from "react";
 
-const EditModal = ({ hideEditModal,id }) => {
+const EditModal = ({ hideEditModal,id ,GetFunc}) => {
     const [name,setName] = useState('')
     const [price,setPrice] = useState('')
     const [teacher,setTeacher] = useState('')
@@ -18,7 +18,7 @@ const EditModal = ({ hideEditModal,id }) => {
                 "Content-Type":"application/json"
             },
             body: JSON.stringify({name,price,teacher,file:"images/courses/js.png"})
-        }).then((res)=>console.log(res))   
+        }).then((res)=>{hideEditModal();GetFunc()})   
     }
 
     return (
