@@ -3,11 +3,20 @@ import { useState } from "react";
 import AddCourseModal from "./AddCourseModal";
 import styles from "@/styles/Course.module.css";
 
-const Course = ({data}) => {
+const Course =({data}) => {
   const [showAddCourseModal, setShowAddCourseModal] = useState(false);
-
+  const [Data,setData]=useState(data)
   const hideAddCourseModal = () => setShowAddCourseModal(false);
 
+  // for realtime
+  const getCourses =async ()=>{
+    const res = await fetch('/api/courses')
+    const AllCourses =await res.json() 
+    console.log(AllCourses)
+      if(res.status === 200){
+        setData(AllCourses)
+      }
+  }
    
 
   return (
@@ -25,8 +34,8 @@ const Course = ({data}) => {
         </div>
         <ul className={styles.courses_list}>
           {
-            data.map((course)=>(
-              <CoursesItem  title={course.name} image={course.file} {...course} />
+            Data.map((course)=>(
+              <CoursesItem  title={course.name} image={course.file} {...course} GetFunc={getCourses} />
               
             ))
           }
@@ -34,7 +43,7 @@ const Course = ({data}) => {
       </section>
 
       {showAddCourseModal && (
-        <AddCourseModal hideAddCourseModal={hideAddCourseModal} />
+        <AddCourseModal hideAddCourseModal={hideAddCourseModal} GetFunc={getCourses} />
       )}
     </>
   );

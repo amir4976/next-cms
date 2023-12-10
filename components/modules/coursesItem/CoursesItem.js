@@ -2,7 +2,7 @@ import DeleteModal from "@/components/templates/index/DeleteModal";
 import EditModal from "@/components/templates/index/EditModal";
 import { useState } from "react";
 import styles from "@/styles/Course.module.css";
-const CoursesItem = ({ title, image ,_id }) => {
+const CoursesItem = ({ title, image ,_id ,GetFunc}) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   
@@ -39,8 +39,8 @@ const CoursesItem = ({ title, image ,_id }) => {
           </a>
         </div>
       </li>
-      {showEditModal && <EditModal hideEditModal={hideEditModal} id={_id} />}
-      {showDeleteModal && <DeleteModal hideDeleteModal={hideDeleteModal} id={_id} />}
+      {showEditModal && <EditModal hideEditModal={hideEditModal} id={_id} GetFunc={GetFunc} />}
+      {showDeleteModal && <DeleteModal hideDeleteModal={hideDeleteModal} id={_id} GetFunc={GetFunc} />}
     </>
   );
 };

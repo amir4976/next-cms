@@ -1,10 +1,10 @@
 import styles from "@/styles/Modal.module.css";
 
-const DeleteModal = ({ hideDeleteModal,id }) => {
+const DeleteModal = ({ hideDeleteModal,id ,GetFunc}) => {
   const DeleteCourse = async (id) =>{
       await fetch(`/api/courses/${id}`,{
         method:"DELETE"
-      }).then((res)=>hideDeleteModal())
+      }).then((res)=>{hideDeleteModal();GetFunc()})
   }
 
 
