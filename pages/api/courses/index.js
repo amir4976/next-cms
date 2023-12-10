@@ -2,7 +2,7 @@ import connectToDB from "@/utils/db";
 import coursesModule from '@/modules/courses'
 const mongoose = require('mongoose')
 
-const handler =(req , res)=>{
+const handler = async (req , res)=>{
     connectToDB()
     switch (req.method) {
         case "GET":
