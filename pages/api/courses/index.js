@@ -13,6 +13,8 @@ const handler = async (req , res)=>{
                 res.json('nothing is here')
             }
         break;
+
+    
         case "POST":
                const {name,price,teacher,file}= JSON.parse(req.body);
                if(name.length < 3 || teacher < 3|| !price || !file ){
