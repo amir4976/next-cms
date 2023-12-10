@@ -13,6 +13,7 @@ const handler = async (req , res)=>{
                 res.json('nothing is here')
             }
         break;
+
     
         case "POST":
                const {name,price,teacher,file}= JSON.parse(req.body);
@@ -22,9 +23,9 @@ const handler = async (req , res)=>{
                const CreatedCourses = coursesModule.create({name,price,teacher,file})
                
                if(CreatedCourses){
-                    res.json('user added successfully ').status(202)
+                    res.json('course added successfully ').status(202)
                 }else{
-                    res.json('user not added something is wrong').status(402)
+                    res.json('course not added something is wrong').status(402)
                }
             break;
 
