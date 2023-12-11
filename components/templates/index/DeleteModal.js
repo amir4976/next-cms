@@ -4,7 +4,7 @@ const DeleteModal = ({ hideDeleteModal,id ,GetFunc}) => {
   const DeleteCourse = async (id) =>{
       await fetch(`/api/courses/${id}`,{
         method:"DELETE"
-      }).then((res)=>{hideDeleteModal();GetFunc()})
+      }).then((res)=>{hideDeleteModal();GetFunc && GetFunc()})
   }
 
 

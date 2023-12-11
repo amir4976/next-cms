@@ -18,7 +18,7 @@ const EditModal = ({ hideEditModal,id ,GetFunc}) => {
                 "Content-Type":"application/json"
             },
             body: JSON.stringify({name,price,teacher,file:"images/courses/js.png"})
-        }).then((res)=>{hideEditModal();GetFunc()})   
+        }).then((res)=>{hideEditModal();GetFunc && GetFunc()})   
     }
 
     return (
