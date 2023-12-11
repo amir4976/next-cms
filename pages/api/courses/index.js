@@ -2,12 +2,17 @@ import connectToDB from "@/utils/db";
 import coursesModule from '@/modules/courses'
 const mongoose = require('mongoose')
 
-const handler =(req , res)=>{
+const handler = async (req , res)=>{
     connectToDB()
     switch (req.method) {
         case "GET":
-                res.json('nothing yet')
-            break;
+            const allUserData = await coursesModule.find()
+            if(allUserData){
+                res.json(allUserData)
+            }else{
+                res.json('nothing is here')
+            }
+        break;
     
         case "POST":
                const {name,price,teacher,file}= JSON.parse(req.body);
