@@ -2,6 +2,7 @@ import DeleteModal from "@/components/templates/index/DeleteModal";
 import EditModal from "@/components/templates/index/EditModal";
 import { useState } from "react";
 import styles from "@/styles/Course.module.css";
+
 const CoursesItem = ({ title, image ,_id ,GetFunc}) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
