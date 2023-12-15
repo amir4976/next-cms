@@ -15,7 +15,7 @@ const handler = async (req, res) => {
           res.json("nothing is here");
         }
       } else {
-        const allUserData = await coursesModule.find();
+        const allUserData = await coursesModule.find().populate("teacher");
         if (allUserData) {
           res.json(allUserData);
         } else {
@@ -26,7 +26,7 @@ const handler = async (req, res) => {
       break;
 
     case "POST":
-      const { name, price, teacher, file } = JSON.parse(req.body);
+      const { name, price, teacher, file } =  req.body;
       if (name.length < 3 || teacher < 3 || !price || !file) {
         res.json("information is not complete");
       }
@@ -38,9 +38,11 @@ const handler = async (req, res) => {
       });
 
       if (CreatedCourses) {
-        res.json("course added successfully ").status(202);
+        res.json("course added successfully ")
+        res.status(202);
       } else {
-        res.json("course not added something is wrong").status(402);
+        res.json("course not added something is wrong")
+        res.status(402);
       }
       break;
 

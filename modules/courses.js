@@ -15,6 +15,10 @@ const schema = mongoose.Schema({
     },file:{
         type:String,
         require:true,
+    },teacher:{
+      type:mongoose.Types.ObjectId,
+      ref:"Teacher"
+      ,require:true  
     }
 })
 
