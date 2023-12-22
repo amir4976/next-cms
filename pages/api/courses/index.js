@@ -15,7 +15,7 @@ const handler = async (req, res) => {
           res.json("nothing is here");
         }
       } else {
-        const allUserData = await coursesModule.find().populate("teacher");
+        const allUserData = await coursesModule.find({},"-__v").populate("teacher");
         if (allUserData) {
           res.json(allUserData);
         } else {
