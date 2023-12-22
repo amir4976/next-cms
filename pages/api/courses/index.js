@@ -1,9 +1,12 @@
 import connectToDB from "@/utils/db";
 import coursesModule from "@/modules/courses";
 const mongoose = require("mongoose");
+import teacherSchema from '@/modules/teacher'
+// import {schema as teacherSchema} from '@/modules/teacher'
 
 const handler = async (req, res) => {
   connectToDB();
+
   switch (req.method) {
     case "GET":
       if (req.query.q) {
@@ -15,7 +18,8 @@ const handler = async (req, res) => {
           res.json("nothing is here");
         }
       } else {
-        const allUserData = await coursesModule.find({},"-__v").populate("teacher");
+        // const allUserData = await coursesModule.find({},"-__v").populate("teacher");
+        const allUserData = await coursesModule.find({},"-__v");
         if (allUserData) {
           res.json(allUserData);
         } else {
@@ -26,16 +30,24 @@ const handler = async (req, res) => {
       break;
 
     case "POST":
-      const { name, price, teacher, file } =  req.body;
+      const { name, price, teacher, file } =  JSON.parse(req.body);
+      console.log(name ,price,teacher,file)
       if (name.length < 3 || teacher < 3 || !price || !file) {
         res.json("information is not complete");
       }
+
+      const mainTeacher = await teacherSchema.findOne({_id:teacher}) 
+     
+     
+     
+     
       const CreatedCourses = coursesModule.create({
         name,
         price,
-        teacher,
+        teacher:mainTeacher,
         file,
       });
+
 
       if (CreatedCourses) {
         res.json("course added successfully ")

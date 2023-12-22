@@ -28,7 +28,7 @@ export async function  getServerSideProps(context){
     const {query} = context
     const res = await courseModel.find({name:{$regex:query.q}})
     const result = JSON.parse(JSON.stringify(res))
-    console.log(result)
+
     return{
         props:{
             result:result   
