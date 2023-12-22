@@ -1,6 +1,7 @@
 const mongoose= require('mongoose')
 import connectToDB from '@/utils/db'
 import courseModule from '@/modules/courses'
+import teacherModel from '@/modules/teacher';
 const handler = async (req,res)=>{
     connectToDB();
     const id = req.query.id
@@ -26,14 +27,19 @@ const handler = async (req,res)=>{
              
         case "PUT":
              const {name,teacher,price,file}= req.body;
-
+             const mainTeacher = await teacherModel.findOne({_id:teacher}) 
              const updatedCourse =await courseModule.findOneAndUpdate({"_id":id},{
-                name,teacher,price,file
+                name,
+                teacher:mainTeacher,
+                price,
+                file
              }) 
              if(updatedCourse){
-                res.json('Course updated successfully!!').status(202)
+                res.json('Course updated successfully!!')
+                res.status(202)
              }else{
-                res.json('Course not updated some thing is wrong').status(502)
+                res.json('Course not updated some thing is wrong')
+                res.status(502)
              }
 
         break;

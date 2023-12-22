@@ -1,5 +1,5 @@
-const mongoose = require("mongoose")
-
+const mongoose = require("mongoose");
+import { schema as teacherSchema}  from '@/modules/teacher';
 
 
 const schema = mongoose.Schema({
@@ -15,6 +15,10 @@ const schema = mongoose.Schema({
     },file:{
         type:String,
         require:true,
+    },teacher:{
+      type: teacherSchema,
+    //   ref:"Teacher",
+      require:true  
     }
 })
 
