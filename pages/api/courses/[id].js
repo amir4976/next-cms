@@ -41,7 +41,7 @@ const handler = async (req,res)=>{
                 res.json('Course not updated some thing is wrong')
                 res.status(502)
              }
-
+ 
         break;
         default:
             break;
